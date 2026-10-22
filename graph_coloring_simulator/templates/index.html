@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Coloring Simulator - Python Academic Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <span class="brand-badge">Python</span>
+                <span class="brand-title">Graph Coloring Simulator</span>
+            </div>
+            <nav class="nav-links">
+                <a href="{{ url_for('home') }}" class="active">Home</a>
+                <a href="{{ url_for('simulator') }}">Simulator</a>
+                <a href="#about-coloring">About</a>
+                <a href="#applications">Applications</a>
+                <a href="#algorithm">Algorithm</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero / Introduction -->
+    <main class="container">
+        <section class="hero-card">
+            <span class="academic-tag">Python Subject Academic Project</span>
+            <h1>Graph Coloring Simulator</h1>
+            <p class="hero-intro">
+                “Graph Coloring Simulator is a Python-based application that demonstrates how colors can be assigned to the vertices of a graph so that no two adjacent vertices have the same color.”
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('simulator') }}" class="btn btn-primary">Start Simulator</a>
+                <a href="#algorithm" class="btn btn-secondary">View Python Algorithm</a>
+            </div>
+        </section>
+
+        <!-- About Graph Coloring Section -->
+        <section id="about-coloring" class="card">
+            <h2>What is Graph Coloring?</h2>
+            <p class="card-text">
+                Graph coloring is the process of assigning colors (or numerical labels) to the vertices of a graph such that no two connected (adjacent) vertices have the same color.
+            </p>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>1. Vertex (Node)</h3>
+                    <p>Represents an entity, such as a university course, an airport gate, or a wireless cell tower.</p>
+                </div>
+                <div class="info-box">
+                    <h3>2. Edge (Link)</h3>
+                    <p>Represents a connection, shared resource, or conflict between two vertices.</p>
+                </div>
+                <div class="info-box">
+                    <h3>3. Proper Coloring</h3>
+                    <p>A coloring is proper if for every edge <code>(u, v)</code>, <code>Color(u) ≠ Color(v)</code>.</p>
+                </div>
+                <div class="info-box">
+                    <h3>4. Chromatic Number (χ)</h3>
+                    <p>The minimum number of colors required to properly color the entire graph.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Algorithm Explanation & Flowchart -->
+        <section id="algorithm" class="card">
+            <h2>About Greedy Coloring Algorithm</h2>
+            <p class="card-text">
+                The greedy algorithm colors vertices one by one in sequence. For each vertex, it considers the colors already assigned to its neighbors and picks the first available smallest color number.
+            </p>
+
+            <div class="flowchart-box">
+                <h4 style="margin-bottom: 12px; color: #1e3a8a;">Algorithm Execution Flow:</h4>
+                <div class="flowchart-diagram">
+                    <div class="flow-step">Start</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">Create Graph (Adjacency List)</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">Select a Vertex</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">Check Neighbor Colors</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">Assign Smallest Available Color</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">Move to Next Vertex</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">Repeat Until All Vertices Are Colored</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">Display Result</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">End</div>
+                </div>
+            </div>
+
+            <div class="code-preview">
+                <div class="code-header">
+                    <span>Python Function: greedy_coloring(graph)</span>
+                    <span class="code-lang">Python 3</span>
+                </div>
+                <pre><code>def greedy_coloring(graph):
+    color = {}
+
+    for vertex in graph:
+        used_colors = set()
+
+        for neighbor in graph[vertex]:
+            if neighbor in color:
+                used_colors.add(color[neighbor])
+
+        current_color = 0
+
+        while current_color in used_colors:
+            current_color += 1
+
+        color[vertex] = current_color
+
+    return color</code></pre>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section id="applications" class="card">
+            <h2>Real-World Applications of Graph Coloring</h2>
+            <p class="card-text">
+                Graph coloring translates complex real-world scheduling and resource allocation problems into straightforward mathematical models:
+            </p>
+
+            <div class="app-list">
+                <div class="app-item">
+                    <h4>1. Exam Timetable Scheduling</h4>
+                    <p>Vertices represent college courses. Edges connect courses taken by the same students. Colors represent exam time slots so no student has overlapping exams.</p>
+                </div>
+                <div class="app-item">
+                    <h4>2. Map Coloring</h4>
+                    <p>Adjacent countries or states sharing a geographical boundary must receive different colors so they can be clearly distinguished on printed maps.</p>
+                </div>
+                <div class="app-item">
+                    <h4>3. Frequency Assignment</h4>
+                    <p>Radio transmission towers with overlapping coverage areas are assigned different frequency channels to avoid electromagnetic signal interference.</p>
+                </div>
+                <div class="app-item">
+                    <h4>4. Register Allocation in Compilers</h4>
+                    <p>Variables that are active simultaneously cannot occupy the same physical CPU register. Compilers use graph coloring to allocate hardware registers efficiently.</p>
+                </div>
+                <div class="app-item">
+                    <h4>5. Task & Resource Scheduling</h4>
+                    <p>Tasks competing for identical machines, meeting rooms, or flight boarding gates are scheduled in conflict-free time slots.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Graph Coloring Simulator — Python Subject Academic Project</p>
+        <p class="footer-sub">Built with Python, Flask, HTML, CSS, and JavaScript</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Graph Coloring Simulator",
+  "description": "An interactive tool to understand graph coloring by assigning different colors to connected vertices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
